@@ -108,6 +108,8 @@ function generarBrief() {
             ${seccion('Sobre la empresa:', empinfo)}
             ${seccion('Objetivos de agenda:', objetivo)}
             ${oportunidadesRaw ? seccion('Oportunidades anteriores:', esc(oportunidadesRaw).replace(/\n/g, '<br>')) : ''}
+
+            <img src="${FOOTER_IMG}" class="ficha-footer" alt="">
         </div>
     `;
 
@@ -196,13 +198,17 @@ async function descargarPPTX() {
             secciones.push({ tipo: 'cuerpo', texto: t, y: y + 0.24, h: h });
             y += 0.24 + h + 0.3;
         });
-    const ALTO_HOJA = Math.max(10.8, y + 0.5);   // la hoja crece si hay mucho texto
+    const W_FOOTER = 4.5, H_FOOTER = W_FOOTER * 118 / 562;   // imagen del pie: 562 x 118 px
+    const ALTO_HOJA = Math.max(10.8, y + 0.95);   // la hoja crece si hay mucho texto (y deja sitio al pie)
 
     // ---------- 6) Presentación ----------
     const pptx = new PptxGenJS();
     pptx.defineLayout({ name: 'FICHA', width: ANCHO_HOJA, height: ALTO_HOJA });
     pptx.layout = 'FICHA';
     const slide = pptx.addSlide();
+
+    // --- Imagen del pie (esquina inferior derecha, pegada al borde) ---
+    slide.addImage({ data: FOOTER_IMG, x: ANCHO_HOJA - W_FOOTER, y: ALTO_HOJA - H_FOOTER, w: W_FOOTER, h: H_FOOTER });
 
     // --- Logo (arriba a la izquierda) ---
     if (logoCliente) {
