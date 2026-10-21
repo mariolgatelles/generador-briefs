@@ -14,7 +14,7 @@ body {
 
 /* HEADER */
 header {
-    background-color: #f040ac91;
+    background-color: #0B1741;
     color: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 8px;
@@ -27,6 +27,15 @@ header {
 h1 {
     margin: 0;
     font-size: 24px;
+}
+
+/* Logo a la derecha del título; fondo blanco para que se vea sobre el azul oscuro */
+.header-logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: white;
+    object-fit: cover;
 }
 
 .logo {
@@ -95,13 +104,13 @@ textarea {
 
 .dropzone:hover,
 .dropzone:focus {
-    border-color: #f040ac;
+    border-color: #0B1741;
     outline: none;
 }
 
 .dropzone.dragover {
-    border-color: #f040ac;
-    background: #fdecf6;
+    border-color: #0B1741;
+    background: #e9ecf5;
 }
 
 .dropzone.has-file {
@@ -209,13 +218,20 @@ textarea {
     width: 7.5in;
     min-height: 10.8in;              /* crece si hay mucho texto, igual que la hoja del PPTX */
     margin: 0 auto;
-    padding: 3in 0.4in 0.5in;        /* el texto empieza a 3" del borde de arriba */
+    padding: 3in 0.4in 0.95in;       /* el texto empieza a 3" del borde de arriba y deja sitio a la imagen del pie */
     background: white;
     border: 1px solid #ddd;
     font-family: Calibri, 'Segoe UI', sans-serif;
     font-size: 11pt;
     line-height: 0.19in;
     color: #000;
+}
+
+/* Imagen decorativa del pie: esquina inferior derecha, pegada al borde */
+.ficha-footer {
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 4.5in;
 }
 
 /* Logo y foto del lead */
