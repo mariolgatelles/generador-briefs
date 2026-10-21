@@ -1,0 +1,379 @@
+/* ESTILOS GENERALES */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+header {
+    background-color: #f040ac91;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* PANEL DE CONTROL (FORMULARIO) */
+.controls {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.col {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+/* ZONAS PARA ARRASTRAR IMÁGENES */
+.dropzone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 8px 10px;
+    min-height: 48px;
+    border: 2px dashed #c9c9c9;
+    border-radius: 6px;
+    background: #fafafa;
+    color: #777;
+    font-size: 13px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.dropzone:hover,
+.dropzone:focus {
+    border-color: #f040ac;
+    outline: none;
+}
+
+.dropzone.dragover {
+    border-color: #f040ac;
+    background: #fdecf6;
+}
+
+.dropzone.has-file {
+    border-style: solid;
+    color: #333;
+}
+
+.dropzone.has-error {
+    border-color: #d9534f;
+    color: #d9534f;
+}
+
+.dropzone-thumb {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+}
+
+.dropzone.has-file .dropzone-thumb {
+    display: block;
+}
+
+.dropzone-hint {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropzone-clear {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 20px;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+}
+
+.dropzone.has-file .dropzone-clear {
+    display: block;
+}
+
+.dropzone-clear:hover {
+    color: #d9534f;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.btn {
+    background-color: #14f1007e;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #006e25;
+}
+
+.btn:disabled {
+    background-color: #23deff;
+    cursor: not-allowed;
+}
+
+.btn-pptx {
+    background-color: #fffc44;
+}
+
+.btn-pptx:hover {
+    background-color: #cfbb02;
+}
+
+.btn-action {
+    background-color: #28a745;
+}
+
+.btn-action:hover {
+    background-color: #0098b3;
+}
+
+/* PREVIEW DEL BRIEF: hoja vertical del mismo tamaño que la diapositiva del PPTX (7.5" x 10.8")
+   Las posiciones están en pulgadas y son las mismas que usa descargarPPTX() */
+#preview-area {
+    display: none;
+    margin-top: 20px;
+}
+
+.ficha {
+    position: relative;
+    box-sizing: border-box;
+    width: 7.5in;
+    min-height: 10.8in;              /* crece si hay mucho texto, igual que la hoja del PPTX */
+    margin: 0 auto;
+    padding: 3in 0.4in 0.5in;        /* el texto empieza a 3" del borde de arriba */
+    background: white;
+    border: 1px solid #ddd;
+    font-family: Calibri, 'Segoe UI', sans-serif;
+    font-size: 11pt;
+    line-height: 0.19in;
+    color: #000;
+}
+
+/* Logo y foto del lead */
+.ficha-logo {
+    position: absolute;
+    left: 0.4in; top: 0.15in;
+    width: 1.7in; height: 1.8in;
+    object-fit: contain;
+}
+
+.ficha-foto-cliente {
+    position: absolute;
+    left: 2.2in; top: 0.8in;
+    width: 1.6in; height: 1.6in;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Línea vertical con un punto arriba */
+.ficha-linea {
+    position: absolute;
+    left: 4.09in; top: 1.05in;
+    width: 0; height: 1.4in;
+    border-left: 1.5pt solid #000;
+}
+
+.ficha-linea::before {
+    content: "";
+    position: absolute;
+    left: -0.055in; top: -0.05in;
+    width: 0.08in; height: 0.08in;
+    border-radius: 50%;
+    background: #000;
+}
+
+/* Título, fecha y ubicación */
+.ficha-title {
+    position: absolute;
+    left: 4.3in; top: 0.28in;
+    width: 2.8in; margin: 0;
+    font-size: 18pt;
+    line-height: 0.4in;
+    font-weight: bold;
+    color: #303336;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ficha-meta {
+    position: absolute;
+    left: 4.3in; top: 0.78in;
+    width: 2.8in;
+    font-size: 10pt;
+    line-height: 0.17in;
+}
+
+/* Equipo Stefanini */
+.ficha-equipo-label {
+    position: absolute;
+    left: 4.3in;
+    font-size: 10pt;
+    line-height: 0.22in;
+}
+
+.ficha-participantes {
+    position: absolute;
+    display: flex;
+}
+
+.ficha-participante {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ficha-participante-foto {
+    width: 0.65in; height: 0.65in;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ficha-participante span {
+    margin-top: 0.05in;
+    font-size: 7pt;
+    font-style: italic;
+    line-height: 0.2in;
+    text-align: center;
+}
+
+/* 1-2 participantes: etiqueta al lado de las fotos */
+.eq-lado .ficha-equipo-label { top: 1.45in; }
+.eq-lado .ficha-participantes { left: 5.2in; top: 1.58in; }
+.eq-lado .ficha-participante { width: 0.97in; }
+
+/* 3 participantes: etiqueta encima de las fotos */
+.eq-arriba .ficha-equipo-label { top: 1.35in; }
+.eq-arriba .ficha-participantes { left: 4.3in; top: 1.68in; }
+.eq-arriba .ficha-participante { width: 0.95in; }
+
+/* Cuerpo */
+.ficha-lead {
+    margin: 0 0 0.05in 0;
+}
+
+.ficha-lead a {
+    color: #0563c1;
+}
+
+.ficha-trayectoria {
+    margin: 0 0 0.3in 0;
+    text-align: justify;
+}
+
+.ficha-section {
+    margin-bottom: 0.3in;
+}
+
+.ficha-section h3 {
+    margin: 0 0 0.02in 0;
+    font-size: 11pt;
+    line-height: 0.22in;
+    font-weight: bold;
+}
+
+.ficha-section p {
+    margin: 0;
+    text-align: justify;
+}
+
+/* IMPRESIÓN: la hoja impresa mide lo mismo que la diapositiva, sin márgenes */
+@page {
+    size: 7.5in 10.8in;
+    margin: 0;
+}
+
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+
+    .controls, header, .no-print {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ficha {
+        border: none;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    #preview-area {
+        display: block;
+    }
+}
