@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Briefs Ejecutivos</title>
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Librería para generar PowerPoint en el navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>Generador de Briefs</h1>
+        </header>
+
+        <!-- FORMULARIO DE ENTRADA -->
+        <div class="controls no-print">
+            <h3 style="margin-top: 0; color: #c000b6;">Ingresa los datos de la reunión</h3>
+
+            <div class="row">
+                <div class="col">
+                    <label>Logo de la Empresa (Cliente):</label>
+                    <input type="file" id="logoCliente" accept="image/*">
+                    <label>Nombre de la empresa (Cliente):</label>
+                    <input type="text" id="empresa" placeholder="Stefanini">
+                </div>
+                <div class="col">
+                    <label>Fecha y Hora:</label>
+                    <input type="text" id="fecha" placeholder="16/07/2026 – 9:00 am">
+                    <label>Ubicación / Formato:</label>
+                    <input type="text" id="ubicacion" placeholder="Sus oficinas, Chile / Online">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <!-- El label es el título bonito de arriba -->
+                    <label>Foto del lead</label>
+                    <input type="file" id="fotoCliente" accept="image/*">
+                    <label>Nombre / Cargo del lead:</label>
+                    <input type="text" id="contacto" placeholder="Ej. Marco Stefanini - CEO">
+                    <label>Link de perfil de LinkedIn:</label>
+                    <input type="url" id="linkedinLead">
+
+                </div>
+                <div class="col" id="fotosParticipantes">
+                    <div>Foto de participante 1 - Stefanini</div>
+                    <input type="file" id="participante_1" placeholder="Foto participante 1" accept="image/*">
+                    <div>Foto de participante 2 - Stefanini</div>
+                    <input type="file" id="participante_2" placeholder="Foto participante 2" accept="image/*">
+                    <div>Foto de participante 3 - Stefanini</div>
+                    <input type="file" id="participante_3" placeholder="Foto participante 3" accept="image/*">
+                </div>
+            </div>
+
+            <label>Equipo Asistente (Stefanini) (separados por coma, en el mismo orden de las fotos):</label>
+            <input type="text" id="equipo" placeholder="Marco Stefanini, Rodrigo Stefanini, Donato Andrade">
+
+            <label>Trayectoria / Perfil:</label>
+            <textarea id="trayectoria"></textarea>
+            <!-- textarea es una etiqueta (<textarea>) que crea un cuadro de texto grande en una página web.Permite a los usuarios escribir textos largos formados por muchas líneas, como comentarios, mensajes o reseñas-->
+
+            <label>Descripción de la Empresa / Noticias:</label>
+            <textarea id="empresaInfo"></textarea>
+
+            <label>Objetivo de la reunión:</label>
+            <textarea id="objetivoReunion" placeholder="Al tratarse del primer acercamiento con Stefanini, el objetivo es conocer sus prioridades e iniciativas estratégicas, comprender los principales retos y proyectos en curso, así como explorar oportunidades en las que podamos aportar valor desde nuestras capacidades y experiencia."></textarea>
+
+            <label>Oportunidades anteriores:</label>
+            <textarea id="oportunidadesInfo"></textarea>
+
+            <div class="btn-group">
+                <button class="btn" onclick="generarBrief()">Generar vista previa</button>
+                <button class="btn btn-pptx" onclick="descargarPPTX()">Descargar PPTX</button>
+                <button class="btn btn-action" onclick="window.print()" id="btn-imprimir" disabled>Imprimir / Guardar PDF</button>
+            </div>
+        </div>
+
+        <!-- RESULTADO -->
+        <div id="preview-area">
+            <!-- Se llena con JavaScript -->
+        </div>
+    </div>
+
+    <!-- JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>
